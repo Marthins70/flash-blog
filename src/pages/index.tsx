@@ -1,5 +1,17 @@
+import { MainCarousel } from "components/Carousel"
+import { Header } from "components/Header"
+import Head from "next/head"
+
 export default function Home() {
     return (
-        <h1 className='text-slate-900 text-4xl font-sans'>Hello world</h1>
+        <>
+            <Head>
+                <title>Home | Flash.Blog</title>
+            </Head>
+            <Header />
+            <main>
+                <MainCarousel />
+            </main>
+        </>
     )
 }
