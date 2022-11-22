@@ -7,9 +7,6 @@ module.exports = {
         fontFamily: {
           sans: 'Roboto, sans-serif'
         },
-        bg: {
-          heroGradient: 'linear-gradient(to right, rgba(255,0,0,0) 0%,rgba(255,0,0,0.65) 100%)'
-        }
       },
     },
     plugins: [],
