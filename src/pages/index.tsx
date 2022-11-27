@@ -3,12 +3,14 @@ import { FeaturedCategory } from "components/FeaturedCategory"
 import { Header } from "components/Header"
 import { GetServerSideProps } from "next"
 import Head from "next/head"
+import { prismic } from "services/prismic"
 
 interface HomeProps {
-    categories: Category[]
+    categories: Category[];
+    carouselSlides: CarouselSlide[];
 }
 
-export default function Home({ categories }: HomeProps) {
+export default function Home({ categories, carouselSlides }: HomeProps) {
     return (
         <>
             <Head>
@@ -16,7 +18,7 @@ export default function Home({ categories }: HomeProps) {
             </Head>
             <Header />
             <main>
-                <MainCarousel />
+                <MainCarousel slides={carouselSlides} />
                 <FeaturedCategory categories={categories} />
             </main>
         </>
@@ -24,40 +26,33 @@ export default function Home({ categories }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const categories = [
-        {
-            id: 1,
-            name: 'weather',
-            summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nibh.',
-            image_url: '/images/cloud-solid.png',
-            link: '/'
-        },
-        {
-            id: 2,
-            name: 'coding',
-            summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nibh.',
-            image_url: '/images/code-solid.png',
-            link: '/'
-        },
-        {
-            id: 3,
-            name: 'architecture',
-            summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nibh.',
-            image_url: '/images/compass-drafting-solid.png',
-            link: '/'
-        },
-        {
-            id: 4,
-            name: 'gaming',
-            summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nibh.',
-            image_url: '/images/gamepad-solid.png',
-            link: '/'
-        },
-    ]
+    const responseCategories = await prismic.getSingle('most_viewed_categories')
+
+    const categories: Category[] = responseCategories.data.categories.map((category: Category, index: Number) => {
+        return {
+            id: index,
+            title: category.title,
+            subtitle: category.subtitle,
+            image: category.image,
+            link: category.link
+        }
+    })
+
+    const responseSlides = await prismic.getAllByType('main_carousel_slide')
+
+    const carouselSlides = responseSlides.map(slide => {
+        return {
+            title: slide.data.slide_title,
+            summary: slide.data.slide_summary,
+            link: slide.data.slide_link,
+            image: slide.data.slide_image
+        } as CarouselSlide
+    })
 
     return {
         props: {
-            categories
+            categories,
+            carouselSlides
         }
     }
 }

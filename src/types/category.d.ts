@@ -1,7 +1,7 @@
 declare type Category = {
     id: number;
-    name: string;
-    summary: string;
-    image_url: string;
-    link: string;
+    title: string;
+    subtitle: string;
+    image: PrismicImage;
+    link: PrismicLink;
 }
