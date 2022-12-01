@@ -9,6 +9,9 @@ export function Menu() {
             <ActiveLink href="/posts">
                 Posts
             </ActiveLink>
+            <ActiveLink href="/category/news">
+                News
+            </ActiveLink>
         </nav>
     )
 }

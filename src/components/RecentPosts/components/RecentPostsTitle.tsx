@@ -1,9 +1,9 @@
 import { Title } from "components/misc/Title";
 
-export function FeaturedCategoryTitle() {
+export function RecentPostsTitle() {
     return(
         <Title>
-            Most viewed categories
+            Recent Posts
         </Title>
     )
 }

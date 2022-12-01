@@ -1,3 +1,11 @@
+declare type PostCard = {
+    uid: string;
+    title: string;
+    description: string;
+    tags: string[];
+    updatedAt: string;
+}
+
 declare type PrismicImage = {
     dimensions: {
         width: number;
