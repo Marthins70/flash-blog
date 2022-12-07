@@ -10,6 +10,7 @@ import { getStripeJs } from "services/stripe-js"
 import { api } from "services/api"
 
 import styles from 'styles/post.module.scss'
+import { formattedDate } from "lib/dateFormatter"
 
 interface PostPreviewProps {
     post: {
@@ -93,11 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ params, previewData }) =>
         slug,
         title: asText(response.data.title),
         content: asHTML(response.data.content.splice(0, 3)),
-        updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric'
-        })
+        updatedAt: formattedDate(response.last_publication_date)
     }
 
     return {
