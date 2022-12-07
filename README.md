@@ -19,13 +19,27 @@ This is a [NextJS](https://nextjs.org) JAMstack web blog I made as practice of a
 
 ## Steps to start the project: 
 
-1. Start node server:
+1. Install dependencies: 
+
+```
+yarn
+```
+or
+```
+npm install
+```
+
+2. Start node server:
 
 ```
 yarn dev
 ```
+or 
+```
+npm run dev
+```
 
-2. Start stripe webhooks:
+3. Start stripe webhooks:
 
 ```
 ./stripe.exe listen --forward-to localhost:3000/api/webhooks
