@@ -8,9 +8,10 @@ import { useEffect } from "react"
 import { prismic } from "services/prismic"
 import { getStripeJs } from "services/stripe-js"
 import { api } from "services/api"
+import { formattedDate } from "lib/dateFormatter"
+import { REVALIDATE_VALUE_IN_DAYS } from "lib/revalidate"
 
 import styles from 'styles/post.module.scss'
-import { formattedDate } from "lib/dateFormatter"
 
 interface PostPreviewProps {
     post: {
@@ -101,6 +102,6 @@ export const getStaticProps: GetStaticProps = async ({ params, previewData }) =>
         props: {
             post
         },
-        revalidate: 60 * 30, // 30 min
+        revalidate: REVALIDATE_VALUE_IN_DAYS(1), // 30 min
     }
 } 
