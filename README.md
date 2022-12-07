@@ -51,7 +51,7 @@ npm run dev
 ./stripe.exe listen --forward-to localhost:3000/api/webhooks
 ```
 
-*PS: You need to login and updated global variables to use [stripe webhooks](https://stripe.com/docs/webhooks/quickstart) correctly.*
+*PS: You need to login and update global variables to use [stripe webhooks](https://stripe.com/docs/webhooks/quickstart) correctly.*
 
 Prismic and FaunaDB connections are serverless so there's no need to start anything.
 
