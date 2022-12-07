@@ -1,4 +1,3 @@
-import { Header } from "components/Header"
 import { PostCard } from "components/PostCard"
 import { REVALIDATE_VALUE_IN_DAYS } from "lib/revalidate"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -18,7 +17,7 @@ export default function Category({ posts, category }: PostsProps) {
             <Head>
                 <title>{category} | Category | Flash.Blog</title>
             </Head>
-            <Header />
+
             <main className="mt-12">
                 <div className="max-w-screen-xl mx-auto">
                     {posts.map(post => (

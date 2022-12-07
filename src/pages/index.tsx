@@ -1,6 +1,5 @@
 import { MainCarousel } from "components/Carousel"
 import { FeaturedCategory } from "components/FeaturedCategory"
-import { Header } from "components/Header"
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import { prismic } from "services/prismic"
@@ -20,7 +19,7 @@ export default function Home({ categories, carouselSlides, posts }: HomeProps) {
             <Head>
                 <title>Home | Flash.Blog</title>
             </Head>
-            <Header />
+
             <main>
                 <MainCarousel slides={carouselSlides} />
                 <FeaturedCategory categories={categories} />

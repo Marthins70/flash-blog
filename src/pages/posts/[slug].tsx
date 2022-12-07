@@ -3,7 +3,9 @@ import { prismic } from "services/prismic"
 import * as prismicH from "@prismicio/helpers"
 import { formattedDate } from "lib/dateFormatter"
 import Head from "next/head"
-import { Header } from "components/Header"
+import { useEffect } from "react"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
 import styles from "styles/post.module.scss"
 
@@ -19,16 +21,25 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+    const { data: session }: any = useSession()
+    const router = useRouter()
+
+    useEffect(() => {
+        if(!session?.activeSubscription) {
+            router.push(`/posts/preview/${post.slug}`)
+        }
+    }, [session])
+
     return(
         <>
             <Head>
                 <title>{post.title} | Flash.Blog</title>
             </Head>
-            <Header />
-            <main className="max-w-screen-xl mx-auto mt-10">
-                <article className="">
-                    <h1>{post.title}</h1>
-                    <time>{post.updatedAt}</time>
+
+            <main className="max-w-screen-xl mx-auto mt-20">
+                <article className="flex flex-col gap-y-8">
+                    <h1 className="text-amber-500 text-5xl">{post.title}</h1>
+                    <time className="text-slate-300 text-2xl">{post.updatedAt}</time>
                     <div 
                         className={styles.postContent}
                         dangerouslySetInnerHTML={{ __html: post.content }} 
@@ -42,7 +53,7 @@ export default function Post({ post }: PostProps) {
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
     const slug = params?.slug
 
-    const response = await prismic.getByUID('post', String(slug), {});
+    const response = await prismic.getByUID('post', String(slug), {})
 
     const post = {
         slug,

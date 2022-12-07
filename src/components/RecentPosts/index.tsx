@@ -16,7 +16,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
                 {posts.map(post => (
                     <Link 
                         key={post.uid} 
-                        href={`/posts/${post.uid}`}
+                        href={`/posts/preview/${post.uid}`}
                         className="bg-slate-800 py-4 px-10 flex flex-col border-b border-amber-500 text-white hover:border-amber-800"
                     >
                         <RecentPostTitle title={post.title} />

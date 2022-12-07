@@ -11,7 +11,7 @@ interface PostCardProps {
 
 export function PostCard({ post }: PostCardProps) {
     return(
-        <Link href={`/posts/${post.uid}`} className="flex flex-col gap-y-2 my-8 pb-8 border-b border-amber-600">
+        <Link href={`/posts/preview/${post.uid}`} className="flex flex-col gap-y-2 my-8 pb-8 border-b border-amber-600">
             <PostCardTitle title={post.title} />
             <Stack direction="row" gap="gap-x-4">
                 <PostCardDate updatedAt={post.updatedAt} />
