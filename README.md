@@ -12,9 +12,13 @@ This is a [NextJS](https://nextjs.org) JAMstack web blog I made as practice of a
 ## The technologies used on it are: 
 
 **[NextJS](https://nextjs.org)**
+
 **[TailwindCSS](https://tailwindcss.com)**
+
 **[FaunaDB](https://fauna.com)**
+
 **[Stripe](https://stripe.com/)**
+
 **[Prismic CMS](https://prismic.io)**
 
 *The theme was developed to be used only in desktop devices.*
